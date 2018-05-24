@@ -1,13 +1,44 @@
-#Install These Dependencies
+# Install These Dependencies
 `yarn add aws-amplify react-navigation redux react-redux redux-thunk`
 `npm install -g awsmobile-cli`
 
-#aws configure
+# aws configure
 `awsmobile configure`
 `awsmobile init`
 use all defaults settings, then enable user signin
 `awsmobile user-signin enable`
 `awsmobile push`
+
+# Important Functions
+`signUp() {
+    Auth.signUp({ // 3
+      username: 'myCoolUsername',
+      password: 'MyCoolP@ssword2!',
+      attributes: {
+        phone_number: '+15555555555',
+        email: 'yourcoolemail@gmail.com'
+      }
+    })
+    .then(res => {
+      console.log('successful signup: ', res)
+    })
+    .catch(err => {
+      console.log('error signing up: ', err)
+    })
+  }
+  `
+
+  `confirmUser() { // 4
+    const { authCode } = this.state
+    Auth.confirmSignUp('myCoolUsername', authCode)
+      .then(res => {
+        console.log('successful confirmation: ', res)
+      })
+      .catch(err => {
+        console.log('error confirming user: ', err)
+      })
+  }
+  `
 
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
